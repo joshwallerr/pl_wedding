@@ -6,10 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Messages | Paul & Louise</title>
     <link rel="stylesheet" href="../static/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <h1>A few words for your special day...</h1>
-    <p>{{ message }}</p>
-    <p>{{ from }}</p>
+    <p id="message"></p>
+    <p id="from"></p>
+    <script>
+        var message = JSON.parse('{{ message | tojson | safe }}');
+        document.getElementById('message').innerHTML = message.message;
+        document.getElementById('from').innerHTML = message.from;
+        </script>
 </body>
 </html>
