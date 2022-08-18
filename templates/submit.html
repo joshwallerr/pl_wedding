@@ -9,39 +9,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    <script>
-        function submit_entry() {
-            var ansBox = document.getElementById("answer-box");
-    
-            var entry = {
-                ansBox: ansBox.value,
-            };
-            
-            fetch(`${window.origin}/endgame/process`, {
-                method: "POST",
-                credentials: "include",
-                body: JSON.stringify(entry),
-                cache: "no-cache",
-                headers: new Headers ({
-                    "content-type": "application/json"
-                })
-            })
-            .then(function (response) {
-    
-                if (response.status == 200) {
-                    response.json().then(function (data) {
-                        console.log(data.ansBox);
-                        document.getElementById("heading7").innerHTML = "Endgame";
-                        document.getElementById("answer-box").value = "";
-                        document.getElementById("answer-box").style.display = "none";
-                        document.getElementById("buttonClicker").style.display = "block";
-                        document.getElementById("Progress_Status").style.display = "block";
-    
-                        return ;
-                    })
-                }
-            })
-        }
-    </script>
+    <form method="post" autocomplete="off">
+        <label for="message">Message:</label>
+        <input type="text" name="message" id="message">
+        <label for="from">From:</label>
+        <input type="text" name="from" id="from">
+        <input type="submit" hidden>
+    </form>
 </body>
 </html>
