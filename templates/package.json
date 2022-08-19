@@ -1,0 +1,24 @@
+{
+  "name": "pl_wedding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./input.css -o ../static/main.css",
+    "watch": "tailwindcss -i ./input.css -o ../static/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshwallerr/pl_wedding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshwallerr/pl_wedding/issues"
+  },
+  "homepage": "https://github.com/joshwallerr/pl_wedding#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  }
+}

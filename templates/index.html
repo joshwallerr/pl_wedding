@@ -7,15 +7,95 @@
     <title>Wedding Messages | Paul & Louise</title>
     <link rel="stylesheet" href="../static/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+/* .content-slider {
+    width: 100%;
+    height: 360px;
+  }
+  
+  .slider {
+    height: 320px;
+    width: 680px;
+    margin: 40px auto 0;
+    overflow: visible;
+    position: relative;
+  }
+  
+  .mask {
+    overflow: hidden;
+    height: 320px;
+  }
+  
+  .slider ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  
+  .slider li {
+    width: 680px;
+    height: 320px;
+    position: absolute;
+    top: -325px;
+    list-style: none;
+  }
+  
+  .slider .quote {
+    font-size: 40px;
+    font-style: italic;
+  }
+  
+  .slider .source {
+    font-size: 20px;
+    text-align: right;
+  }
+   */
+{% for message in messages %}
+    .slider li.anim{{ loop.index }} {
+        animation: cycle{{ loop.index }} 7s linear;
+        animation-delay: {{ loop.index0 * 7 }}s;
+        animation-fill-mode: forwards;
+    }
+
+    {% if loop.first %}
+        @keyframes cycle{{ loop.index }} {
+            0% {opacity: 1;}
+            5% {opacity: 1;}
+            95% {opacity: 1;}
+            100%{opacity: 0;}
+        }
+    {% else %}
+        @keyframes cycle{{ loop.index }} {
+                0% {opacity: 0;}
+                5% {opacity: 1;}
+                95% {opacity: 1;}
+                100%{opacity: 0;}
+            }
+    {% endif %}
+
+{% endfor %}
+    </style>
 </head>
-<body>
-    <h1>A few words for your special day...</h1>
-    <p id="message"></p>
-    <p id="from"></p>
-    <script>
-        var message = JSON.parse('{{ message | tojson | safe }}');
-        document.getElementById('message').innerHTML = message.message;
-        document.getElementById('from').innerHTML = message.from;
-    </script>
+<body class="bg-rose-800 text-zinc-100">
+    <div class="max-w-2xl flex flex-col justify-center mx-auto p-6 px-3 pt-4">
+        <h1 class="mx-auto text-3xl text-center pt-4 mb-6">A few words for your <br>special day... 💍</h1>
+        <div class="content-slider">
+            <div class="slider">
+              <div class="mask">
+                <ul>
+                {% for message in messages %}
+                <li class="anim{{ loop.index }} px-8 pt-14 mx-auto" style="{% if not loop.first %}opacity:0;{% endif %}position:fixed;z-index:1;">
+                    <p class="message quote text-xl">
+                        "{{ message[0] }}" <br><br>
+                    </p>
+                    <p class="from source text-lg">
+                        From: {{ message[1] }} <br>
+                    </p>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
